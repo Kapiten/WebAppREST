@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Sakkie
+ * @author Tebogo
  */
 @Entity
 @Table(name = "login_details")
@@ -42,12 +42,12 @@ public class LoginDetails implements Serializable {
     private Integer loginDetailsId;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 250)
     @Column(name = "username")
     private String username;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 250)
     @Column(name = "password")
     private String password;
     @Basic(optional = false)

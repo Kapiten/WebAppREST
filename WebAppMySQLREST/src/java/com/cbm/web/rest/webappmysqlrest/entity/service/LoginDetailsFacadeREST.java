@@ -22,7 +22,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author Sakkie
+ * @author Tebogo
  */
 @Stateless
 @Path("com.cbm.web.rest.webappmysqlrest.entity.logindetails")
@@ -60,17 +60,6 @@ public class LoginDetailsFacadeREST extends AbstractFacade<LoginDetails> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public LoginDetails find(@PathParam("id") Integer id) {
         return super.find(id);
-    }
-
-    @GET
-    @Path("{username}/{u1}/{u2}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public LoginDetails findByUsername(@PathParam("username") String username) {
-        return (LoginDetails)getEntityManager().createQuery("select l from LoginDetails l where l.username = :username")
-                .setParameter("username", username)
-                .setMaxResults(1)
-                .getResultList()
-                .get(0);
     }
 
     @GET

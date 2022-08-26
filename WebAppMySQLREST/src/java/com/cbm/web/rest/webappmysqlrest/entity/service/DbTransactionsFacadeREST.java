@@ -22,7 +22,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author Sakkie
+ * @author Tebogo
  */
 @Stateless
 @Path("com.cbm.web.rest.webappmysqlrest.entity.dbtransactions")

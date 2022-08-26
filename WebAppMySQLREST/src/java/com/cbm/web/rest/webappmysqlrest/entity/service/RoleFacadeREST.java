@@ -22,7 +22,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author Sakkie
+ * @author Tebogo
  */
 @Stateless
 @Path("com.cbm.web.rest.webappmysqlrest.entity.role")
@@ -60,17 +60,6 @@ public class RoleFacadeREST extends AbstractFacade<Role> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Role find(@PathParam("id") Integer id) {
         return super.find(id);
-    }
-
-    @GET
-    @Path("{name}/{n1}/{n2}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Role findByName(@PathParam("name") String name) {
-        return (Role)getEntityManager().createQuery("select r from Role r where r.roleName=:roleName")
-                .setParameter("roleName", name)
-                .setMaxResults(1)
-                .getResultList()
-                .get(0);
     }
 
     @GET

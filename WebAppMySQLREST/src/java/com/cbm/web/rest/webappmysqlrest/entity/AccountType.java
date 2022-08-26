@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Sakkie
+ * @author Tebogo
  */
 @Entity
 @Table(name = "account_type")
@@ -41,12 +41,12 @@ public class AccountType implements Serializable {
     private Integer accountTypeId;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 250)
     @Column(name = "account_name")
     private String accountName;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 500)
     @Column(name = "description")
     private String description;
 

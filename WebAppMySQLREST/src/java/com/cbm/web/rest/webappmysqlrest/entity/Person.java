@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Sakkie
+ * @author Tebogo
  */
 @Entity
 @Table(name = "person")
@@ -31,11 +31,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Person.findByPersonId", query = "SELECT p FROM Person p WHERE p.personId = :personId")
     , @NamedQuery(name = "Person.findByFirstname", query = "SELECT p FROM Person p WHERE p.firstname = :firstname")
     , @NamedQuery(name = "Person.findByLastname", query = "SELECT p FROM Person p WHERE p.lastname = :lastname")
+    , @NamedQuery(name = "Person.findByGender", query = "SELECT p FROM Person p WHERE p.gender = :gender")
     , @NamedQuery(name = "Person.findByEmail", query = "SELECT p FROM Person p WHERE p.email = :email")
     , @NamedQuery(name = "Person.findByCellnumber1", query = "SELECT p FROM Person p WHERE p.cellnumber1 = :cellnumber1")
     , @NamedQuery(name = "Person.findByCellnumber2", query = "SELECT p FROM Person p WHERE p.cellnumber2 = :cellnumber2")
     , @NamedQuery(name = "Person.findByFax", query = "SELECT p FROM Person p WHERE p.fax = :fax")
-    , @NamedQuery(name = "Person.findByGender", query = "SELECT p FROM Person p WHERE p.gender = :gender")
     , @NamedQuery(name = "Person.findByDateCreated", query = "SELECT p FROM Person p WHERE p.dateCreated = :dateCreated")})
 public class Person implements Serializable {
 
@@ -47,18 +47,23 @@ public class Person implements Serializable {
     private Integer personId;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 250)
     @Column(name = "firstname")
     private String firstname;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 250)
     @Column(name = "lastname")
     private String lastname;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "gender")
+    private String gender;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 200)
+    @Size(min = 1, max = 500)
     @Column(name = "email")
     private String email;
     @Basic(optional = false)
@@ -79,12 +84,7 @@ public class Person implements Serializable {
     private String fax;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "gender")
-    private String gender;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 250)
     @Column(name = "date_created")
     private String dateCreated;
 
@@ -95,15 +95,16 @@ public class Person implements Serializable {
         this.personId = personId;
     }
 
-    public Person(Integer personId, String firstname, String lastname, String email, String cellnumber1, String cellnumber2, String fax, String gender) {
+    public Person(Integer personId, String firstname, String lastname, String gender, String email, String cellnumber1, String cellnumber2, String fax, String dateCreated) {
         this.personId = personId;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.gender = gender;
         this.email = email;
         this.cellnumber1 = cellnumber1;
         this.cellnumber2 = cellnumber2;
         this.fax = fax;
-        this.gender = gender;
+        this.dateCreated = dateCreated;
     }
 
     public Integer getPersonId() {
@@ -128,6 +129,14 @@ public class Person implements Serializable {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getEmail() {
@@ -162,14 +171,6 @@ public class Person implements Serializable {
         this.fax = fax;
     }
 
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
     public String getDateCreated() {
         return dateCreated;
     }
@@ -177,7 +178,7 @@ public class Person implements Serializable {
     public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;

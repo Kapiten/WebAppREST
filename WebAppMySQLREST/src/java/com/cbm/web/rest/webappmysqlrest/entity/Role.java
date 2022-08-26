@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Sakkie
+ * @author Tebogo
  */
 @Entity
 @Table(name = "role")
@@ -41,12 +41,12 @@ public class Role implements Serializable {
     private Integer roleId;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 250)
     @Column(name = "role_name")
     private String roleName;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 1000)
+    @Size(min = 1, max = 500)
     @Column(name = "description")
     private String description;
 

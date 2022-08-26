@@ -22,7 +22,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author Sakkie
+ * @author Tebogo
  */
 @Stateless
 @Path("com.cbm.web.rest.webappmysqlrest.entity.account")
@@ -60,17 +60,6 @@ public class AccountFacadeREST extends AbstractFacade<Account> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Account find(@PathParam("id") Integer id) {
         return super.find(id);
-    }
-
-    @GET
-    @Path("{personId}/{p1}/{p2}/{p3}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Account findByPersonId(@PathParam("personId") Integer personId) {
-        return (Account)getEntityManager().createQuery("select a from Account a where a.personId=:personId")
-                .setParameter("personId", personId)
-                .setMaxResults(1)
-                .getResultList()
-                .get(0);
     }
 
     @GET

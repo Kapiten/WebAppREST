@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Sakkie
+ * @author Tebogo
  */
 @Entity
 @Table(name = "account")
@@ -31,8 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Account.findByAccountId", query = "SELECT a FROM Account a WHERE a.accountId = :accountId")
     , @NamedQuery(name = "Account.findByAccountNo", query = "SELECT a FROM Account a WHERE a.accountNo = :accountNo")
     , @NamedQuery(name = "Account.findByAccountTypeId", query = "SELECT a FROM Account a WHERE a.accountTypeId = :accountTypeId")
-    , @NamedQuery(name = "Account.findByPersonId", query = "SELECT a FROM Account a WHERE a.personId = :personId")
-    , @NamedQuery(name = "Account.findByRoleId", query = "SELECT a FROM Account a WHERE a.roleId = :roleId")})
+    , @NamedQuery(name = "Account.findByRoleId", query = "SELECT a FROM Account a WHERE a.roleId = :roleId")
+    , @NamedQuery(name = "Account.findByPersonId", query = "SELECT a FROM Account a WHERE a.personId = :personId")})
 public class Account implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,12 +52,12 @@ public class Account implements Serializable {
     private int accountTypeId;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "person_id")
-    private int personId;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "role_id")
     private int roleId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "person_id")
+    private int personId;
 
     public Account() {
     }
@@ -66,12 +66,12 @@ public class Account implements Serializable {
         this.accountId = accountId;
     }
 
-    public Account(Integer accountId, String accountNo, int accountTypeId, int personId, int roleId) {
+    public Account(Integer accountId, String accountNo, int accountTypeId, int roleId, int personId) {
         this.accountId = accountId;
         this.accountNo = accountNo;
         this.accountTypeId = accountTypeId;
-        this.personId = personId;
         this.roleId = roleId;
+        this.personId = personId;
     }
 
     public Integer getAccountId() {
@@ -98,20 +98,20 @@ public class Account implements Serializable {
         this.accountTypeId = accountTypeId;
     }
 
-    public int getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(int personId) {
-        this.personId = personId;
-    }
-
     public int getRoleId() {
         return roleId;
     }
 
     public void setRoleId(int roleId) {
         this.roleId = roleId;
+    }
+
+    public int getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(int personId) {
+        this.personId = personId;
     }
 
     @Override
