@@ -63,6 +63,18 @@ public class AccountTypeFacadeREST extends AbstractFacade<AccountType> {
     }
 
     @GET
+    @Path("{name}/{n1}/{n2}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public AccountType findByName(@PathParam("name") String name) {
+        return (AccountType)getEntityManager().createQuery("select a from AccountType a where a.accountName=:accountName")
+                .setParameter("accountName", name)
+                .setMaxResults(1)
+                .getResultList()
+                .get(0);
+        //return super.findByName(name, table, field);
+    }
+
+    @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<AccountType> findAll() {

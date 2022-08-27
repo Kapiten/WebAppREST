@@ -63,6 +63,17 @@ public class PersonFacadeREST extends AbstractFacade<Person> {
     }
 
     @GET
+    @Path("{date}/{d1}/{d2}/{d3}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Person findByDate(@PathParam("date") String date) {
+        return (Person)getEntityManager().createQuery("select p from Person p where p.dateCreated=:dateCreated")
+                .setParameter("dateCreated",date)
+                .setMaxResults(1)
+                .getResultList()
+                .get(0);
+    }
+
+    @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Person> findAll() {

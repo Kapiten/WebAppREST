@@ -55,11 +55,30 @@ public class AccountFacadeREST extends AbstractFacade<Account> {
         super.remove(super.find(id));
     }
 
+    @DELETE
+    @Path("/removeByPersonId/{pid}")
+    public void removeByPersonId(@PathParam("pid") Integer pid) {
+        getEntityManager().createQuery("delete from Account a where a.personId=:pid")
+                .setParameter("pid", pid)
+                .executeUpdate();
+    }
+
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Account find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+
+    @GET
+    @Path("/findByPersonId/{personId}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Account findByPersonId(@PathParam("personId") Integer personId) {
+        return (Account)getEntityManager().createQuery("select a from Account a where a.personId=:personId")
+                .setParameter("personId", personId)
+                .setMaxResults(1)
+                .getResultList()
+                .get(0);
     }
 
     @GET

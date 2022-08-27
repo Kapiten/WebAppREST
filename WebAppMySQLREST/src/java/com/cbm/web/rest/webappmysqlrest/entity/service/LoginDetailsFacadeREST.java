@@ -55,11 +55,30 @@ public class LoginDetailsFacadeREST extends AbstractFacade<LoginDetails> {
         super.remove(super.find(id));
     }
 
+    @DELETE
+    @Path("/removeByPersonId/{pid}")
+    public void removeByPersonId(@PathParam("pid") Integer pid) {
+        getEntityManager().createQuery("delete from from LoginDetails l where l.personId=:pid")
+                .setParameter("pid", pid)
+                .executeUpdate();
+    }
+
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public LoginDetails find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+
+    @GET
+    @Path("/findByUsername/{username}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public LoginDetails findByUsername(@PathParam("username") String username) {
+        return (LoginDetails)getEntityManager().createQuery("select l from LoginDetails l where l.username = :username")
+                .setParameter("username", username)
+                .setMaxResults(1)
+                .getResultList()
+                .get(0);
     }
 
     @GET

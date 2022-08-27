@@ -63,6 +63,17 @@ public class RoleFacadeREST extends AbstractFacade<Role> {
     }
 
     @GET
+    @Path("{name}/{n1}/{n2}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Role findByName(@PathParam("name") String name) {
+        return (Role)getEntityManager().createQuery("select r from Role r where r.roleName=:roleName")
+                .setParameter("roleName", name)
+                .setMaxResults(1)
+                .getResultList()
+                .get(0);
+    }
+
+    @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Role> findAll() {
