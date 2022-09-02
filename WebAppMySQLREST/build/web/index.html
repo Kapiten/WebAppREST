@@ -6,11 +6,24 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>WebAppMySQLREST</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link type="text/css" href="css/home.css" rel="stylesheet" />
+        <script src="js/home.js"></script>
     </head>
     <body>
-        <div>TODO write content</div>
+        <h1>WebAppMySQLREST - Official Site</h1>
+        <div class="webServ">
+        <h2>Web Services available:</h2>
+        <ul>
+            <li><button type="button" onclick="showservicepage('Person')">Person Service</button></li>
+            <li><button type="button" onclick="showservicepage('Login Details')">Login Details Service</button></li>
+            <li><button type="button" onclick="showservicepage('Account')">Account Service</button></li>
+            <li><button type="button" onclick="showservicepage('Account Type')">Account Type Service</button></li>
+            <li><button type="button" onclick="showservicepage('DB Transaction')">DB Transaction Service</button></li>
+            <li><button type="button" onclick="showservicepage('Role')">Role Service</button></li>
+        </ul>
+        </div>
     </body>
 </html>
