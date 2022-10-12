@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="app">
+    <head>
+        <title>DB Transaction View</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/home.css" />
+        <script src="../../js/angular1_8_2.js"></script>
+        <script src="../../js/angular_forms.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <label class="headerText">DB Transaction View</label>
+            <p class="subheader">View DB Transaction Information<p>
+        </div>
+        
+        <div ng-controller="DBCtrl">
+            <script>entityAct("dbtransaction");</script>
+            <button ng-click="writeResponse()">Server Response</button>
+            <button ng-click="clearTextResponse()">Clear Response Text</button>
+            <br>{{ws_response}}
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Entry</th>
+                </tr>
+                <tr><td><span style="font-weight:bold;">ID: </span></td><td><input type="text" ng-model="newEntity.dbTransactionId" /></td></tr>
+                <tr><td><span style="font-weight:bold;">Description: </span></td><td><input type="text" ng-model="newEntity.description" /></td></tr>
+                <tr><td><span style="font-weight:bold;">Date Done: </span></td><td><input type="text" ng-model="newEntity.dateDone" /></td></tr>
+                <tr><td><span style="font-weight:bold;">Person ID: </span></td><td><input type="text" ng-model="newEntity.personId" /></td></tr>
+            </table>
+            <input id="btnSave" type="button" value="Save" ng-click="saveRecord()" />
+            <input id="btnEdit" type="button" value="Edit" disabled="true" ng-click="editRecord()" />
+            <input id="btnDelete" type="button" value="Delete" disabled="true" ng-click="deleteRecord()" />
+            <input id="btnClear" type="button" value="Clear" ng-click="clearFields()" />
+            <br>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Description</th>
+                    <th>Date Done</th>
+                    <th>Person ID</th>
+                </tr>
+                <tr ng-repeat="(key,value) in entity" class="trView"
+                    ng-click="edit(key)">
+                    <td>{{value.dbTransactionId}}</td>
+                    <td>{{value.description}}</td>
+                    <td>{{value.dateDone}}</td>
+                    <td>{{value.personId}}</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="app">
+    <head>
+        <title>Person View</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/home.css" />
+        <script src="../../js/angular1_8_2.js"></script>
+        <script src="../../js/angular_forms.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <label class="headerText">Person View</label>
+            <p class="subheader">View Person Information<p>
+        </div>
+        
+        <div ng-controller="DBCtrl">
+            <script>entityAct("person");</script>
+            <button ng-click="writeResponse()">Server Response</button>
+            <button ng-click="clearTextResponse()">Clear Response Text</button>
+            <br>{{ws_response}}
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Entry</th>
+                </tr>
+                <tr><td><span style="font-weight:bold;">Firstname: </span></td><td><input type="text" ng-model="newEntity.firstname" /></td></tr>
+                <tr><td><span style="font-weight:bold;">Lastname: </span></td><td><input type="text" ng-model="newEntity.lastname" /></td></tr>
+                <tr><td><span style="font-weight:bold;">Gender: </span></td><td><fieldset>
+                            <input name="gender" type="radio" ng-model="newEntity.gender" value="Female"/><label>Female</label><br>
+                            <input name="gender" type="radio" ng-model="newEntity.gender" value="Male"/><label>Male</label><br>
+                            <input name="gender" type="radio" ng-model="newEntity.gender" value="Other"/><label>Other</label><br></fieldset></td></tr>
+                <tr><td><span style="font-weight:bold;">Cell Number 1: </span></td><td><input type="text" ng-model="newEntity.cellnumber1" /></td></tr>
+                <tr><td><span style="font-weight:bold;">Cell Number 2: </span></td><td><input type="text" ng-model="newEntity.cellnumber2" /></td></tr>
+                <tr><td><span style="font-weight:bold;">Email: </span></td><td><input type="text" ng-model="newEntity.email" /></td></tr>
+            </table>
+            <input id="btnSave" type="button" value="Save" ng-click="saveRecord()" />
+            <input id="btnEdit" type="button" value="Edit" disabled="true" ng-click="editRecord()" />
+            <input id="btnDelete" type="button" value="Delete" disabled="true" ng-click="deleteRecord()" />
+            <input id="btnClear" type="button" value="Clear" ng-click="clearFields()" />
+            <br>
+            <table>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>Cell Number 1</th>
+                    <th>Cell Number 2</th>
+                </tr>
+                <tr ng-repeat="(key,value) in entity" class="trView"
+                    ng-click="edit(key)">
+                    <td>{{value.firstname}}</td>
+                    <td>{{value.lastname}}</td>
+                    <td>{{value.gender}}</td>
+                    <td>{{value.email}}</td>
+                    <td>{{value.cellnumber1}}</td>
+                    <td>{{value.cellnumber2}}</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
